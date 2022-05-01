@@ -1,0 +1,111 @@
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local Window = Library.CreateLib("PraZer HuB", "DarkTheme")
+
+local Tab = Window:NewTab("All")
+local Section = Tab:NewSection("Function")
+
+local Tab = Window:NewTab("Shop")
+local ShopSection = Tab:NewSection("gun Shop")
+
+ShopSection:NewButton("phone shop", "PraZer HuB", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-122.016068, 21.9007416, -867.862732, -0.492555261, 1.56599071e-08, 0.87028116, 3.82981149e-08, 1, 3.68160369e-09, -0.87028116, 3.51435219e-08, -0.492555261)
+end)
+
+ShopSection:NewButton("Doctor", "PraZer HuB", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(113.591324, 22.7999897, -501.196655, 0.482790679, -5.0137551e-08, -0.87573576, 9.77851755e-08, 1, -3.34322059e-09, 0.87573576, -8.40199021e-08, 0.482790679)
+end)
+
+ShopSection:NewButton("Taser gun", "PraZer HuB", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-44.3748283, 25.6168518, -953.363647, 0.960126221, 4.91388796e-09, 0.279566824, -2.11814477e-08, 1, 5.51674013e-08, -0.279566824, -5.88892988e-08, 0.960126221)
+end)
+
+ShopSection:NewButton("Gym", "PraZer HuB", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-236.634628, 22.0672932, -1119.21387, 0.0805964842, 2.77750001e-08, -0.996746838, -3.02093852e-08, 1, 2.54229349e-08, 0.996746838, 2.80621091e-08, 0.0805964842)
+end)
+
+ShopSection:NewButton("RPG Shop", "PraZer HuB", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(89.6520996, -26.7500362, -275.771271, -0.0913505927, 4.49268711e-08, 0.995818794, 1.82495619e-08, 1, -4.34413998e-08, -0.995818794, 1.42048586e-08, -0.0913505927)
+end)
+
+ShopSection:NewButton("Police Station", "PraZer HuB", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-256.195526, 21.7999516, -114.685867, 0.913839281, 8.34155216e-08, -0.406076044, -8.30258955e-08, 1, 1.85758289e-08, 0.406076044, 1.67395058e-08, 0.913839281)
+end)
+
+ShopSection:NewButton("Revolver gun", "PraZer HuB", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-636.775085, 21.7499943, -124.950287, -0.999097884, -4.77279283e-09, 0.0424667634, -4.2476791e-09, 1, 1.24555193e-08, -0.0424667634, 1.22638983e-08, -0.999097884)
+end)
+
+ShopSection:NewButton("Dahood Bank", "PraZer HuB", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-470.56543, 23.0682373, -304.471985, 0.587432325, 2.98964125e-08, 0.809273303, 5.59150202e-08, 1, -7.7529684e-08, -0.809273303, 9.0793975e-08, 0.587432325)
+end)
+
+
+Plr = {}
+for i,v in pairs(game:GetService("Players"):GetChildren()) do
+    table.insert(Plr,v.Name) 
+end
+local drop = Section:NewDropdown("Select Player!", "", Plr, function(t)
+   PlayerTP = t
+end)
+
+Section:NewButton("Click To TP", "", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[PlayerTP].Character.HumanoidRootPart.CFrame
+end)
+
+Section:NewToggle("Auto Tp", "", function(taga)
+_G.TPPlayer = taga
+
+
+while _G.TPPlayer do wait()
+
+-------------------------------------------------------------
+if _G.TPPlayer then 
+    local CFrameEnd = game.Players[PlayerTP].Character.HumanoidRootPart.CFrame --ใส่พิกัดวาร์ปใน()
+    local Time = 20
+    local tween = game:GetService("TweenService"):Create(game.Players.LocalPlayer.Character.HumanoidRootPart,
+        TweenInfo.new(Time), {CFrame = CFrameEnd}) tween:Play()
+    
+        
+        else
+            
+            local CFrameEnd = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame --ใส่พิกัดวาร์ปใน()
+            local Time = 0
+            local tween = game:GetService("TweenService"):Create(game.Players.LocalPlayer.Character.HumanoidRootPart,
+                TweenInfo.new(Time), {CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame}) tween:Play()
+                
+ 
+end
+
+
+
+
+
+-------------------------------------------------------------
+
+
+
+end
+
+end)
+
+Section:NewSlider("SliderText", "SliderInfo", 100, 0, function(s) -- 500 (MaxValue) | 0 (MinValue)
+    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = s
+end)
+
+Section:NewToggle("Jump", "", function(s)
+_G.jump = s
+while _G.jump do wait()
+game.Players.LocalPlayer.Character.Humanoid.JumpPower = 100
+end
+end)
+Section:NewButton("Refresh Dropdown","", function()
+  drop:Refresh(Plr)
+end)
+
+
+local Tab = Window:NewTab("Key Change")
+local KeySection = Tab:NewSection("Key")
+
+KeySection:NewKeybind("KeyChang", "", Enum.KeyCode.P, function()
+	Library:ToggleUI()
+end)
